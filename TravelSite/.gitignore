@@ -1,0 +1,9 @@
+.settings/
+.project
+.classpath
+.metadata/
+target/
+build/
+.DS_Store
+Thumbs.db
+*.log
