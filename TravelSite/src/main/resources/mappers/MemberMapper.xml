@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.travel.mapper.MemberMapper">
+
+    <!-- 회원가입 -->
+    <insert id="insertMember" parameterType="com.travel.dto.MemberDTO">
+        INSERT INTO TRV_MEMBER (MEMBER_ID, USER_ID, PASSWORD, NAME, EMAIL)
+        VALUES (TRV_MEMBER_SEQ.NEXTVAL, #{userId}, #{password}, #{name}, #{email})
+    </insert>
+
+    <!-- 아이디로 조회 (로그인/중복체크) -->
+    <select id="selectMemberByUserId" parameterType="string" resultType="com.travel.dto.MemberDTO">
+        SELECT 
+            MEMBER_ID  AS memberId,
+            USER_ID    AS userId,
+            PASSWORD   AS password,
+            NAME       AS name,
+            EMAIL      AS email,
+            JOIN_DATE  AS joinDate
+        FROM TRV_MEMBER
+        WHERE USER_ID = #{userId}
+    </select>
+
+    <!-- 회원번호로 조회 -->
+    <select id="selectMemberById" parameterType="int" resultType="com.travel.dto.MemberDTO">
+        SELECT 
+            MEMBER_ID  AS memberId,
+            USER_ID    AS userId,
+            PASSWORD   AS password,
+            NAME       AS name,
+            EMAIL      AS email,
+            JOIN_DATE  AS joinDate
+        FROM TRV_MEMBER
+        WHERE MEMBER_ID = #{memberId}
+    </select>
+
+</mapper>

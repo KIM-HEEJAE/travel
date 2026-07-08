@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.travel.dto.BoardDTO;
+import com.travel.dto.MemberDTO;
 import com.travel.service.BoardService;
 
 import page.PageUtil;
@@ -66,13 +69,21 @@ public class BoardController {
 
     // 게시글 작성 폼
     @RequestMapping("/write")
-    public String writeForm() {
+    public String writeForm(HttpSession session) {
+    	if(session.getAttribute("loginMember")==null) {
+    		return "redirect:/member/login";
+    	}
         return "board/write";
     }
 
     // 게시글 등록 처리
     @RequestMapping("/insert")
-    public String insert(BoardDTO board) {
+    public String insert(BoardDTO board, HttpSession session) {
+    	MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
+    	if(loginMember ==null) {
+    		return "redirect:/member/login";
+    	}
+    	board.setMemberId(loginMember.getMemberId());
         boardService.writeBoard(board);
         return "redirect:/board/list";
     }

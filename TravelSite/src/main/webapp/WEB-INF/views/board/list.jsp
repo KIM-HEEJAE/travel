@@ -22,7 +22,18 @@
 </head>
 <body>
     <h2>✈ 여행 게시판</h2>
-
+<div style="text-align: right; margin-bottom: 10px;">
+    <c:choose>
+        <c:when test="${not empty sessionScope.loginMember}">
+            <b>${sessionScope.loginMember.name}</b>님 환영합니다! 
+            <a href="${pageContext.request.contextPath}/member/logout">로그아웃</a>
+        </c:when>
+        <c:otherwise>
+            <a href="${pageContext.request.contextPath}/member/login">로그인</a> | 
+            <a href="${pageContext.request.contextPath}/member/join">회원가입</a>
+        </c:otherwise>
+    </c:choose>
+</div>
     <div>
         <a href="${pageContext.request.contextPath}/board/write" class="write-btn">
             <button type="button">글쓰기</button>

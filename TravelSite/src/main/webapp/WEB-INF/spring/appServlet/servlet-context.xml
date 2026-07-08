@@ -15,6 +15,7 @@
 
 	<!-- 정적 리소스 처리 (css, js, images) -->
 	<resources mapping="/resources/**" location="/resources/" />
+	
 
 	<!-- JSP 뷰 리졸버 -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

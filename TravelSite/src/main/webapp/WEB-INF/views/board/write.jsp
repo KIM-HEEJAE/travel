@@ -15,9 +15,7 @@
     <h2>게시글 작성</h2>
     <form action="${pageContext.request.contextPath}/board/insert" method="post">
 
-        <!-- 임시: 로그인 기능 만들기 전까지 회원번호 직접 입력 (나중에 세션값으로 교체) -->
-        <label>작성자 회원번호 (임시)</label>
-        <input type="text" name="memberId" value="1" required>
+       
 
         <label>제목</label>
         <input type="text" name="title" required>
