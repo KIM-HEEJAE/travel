@@ -63,18 +63,22 @@
     <div class="header">
         <a href="${pageContext.request.contextPath}/" class="logo">✈ TravelSite</a>
         <div class="nav">
-            <a href="${pageContext.request.contextPath}/board/list">게시판</a>
-            <c:choose>
-                <c:when test="${not empty sessionScope.loginMember}">
-                    <a href="#">${sessionScope.loginMember.name}님</a>
-                    <a href="${pageContext.request.contextPath}/member/logout">로그아웃</a>
-                </c:when>
-                <c:otherwise>
-                    <a href="${pageContext.request.contextPath}/member/login">로그인</a>
-                    <a href="${pageContext.request.contextPath}/member/join">회원가입</a>
-                </c:otherwise>
-            </c:choose>
-        </div>
+    <a href="${pageContext.request.contextPath}/board/list">게시판</a>
+    <a href="${pageContext.request.contextPath}/preference/dashboard">취향통계</a>
+        <a href="${pageContext.request.contextPath}/chat/ask">AI 상담</a>
+    
+    <c:choose>
+        <c:when test="${not empty sessionScope.loginMember}">
+            <a href="${pageContext.request.contextPath}/preference/survey">취향설문</a>
+            <a href="#">${sessionScope.loginMember.name}님</a>
+            <a href="${pageContext.request.contextPath}/member/logout">로그아웃</a>
+        </c:when>
+        <c:otherwise>
+            <a href="${pageContext.request.contextPath}/member/login">로그인</a>
+            <a href="${pageContext.request.contextPath}/member/join">회원가입</a>
+        </c:otherwise>
+    </c:choose>
+</div>
     </div>
 
     <div class="hero">

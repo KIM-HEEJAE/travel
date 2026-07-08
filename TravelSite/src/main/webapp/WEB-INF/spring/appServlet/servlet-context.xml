@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+<beans:beans
+	xmlns="http://www.springframework.org/schema/mvc"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -15,15 +16,22 @@
 
 	<!-- 정적 리소스 처리 (css, js, images) -->
 	<resources mapping="/resources/**" location="/resources/" />
-	
 
+	<!-- 파일 업로드 설정 -->
+	<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="10485760" /> <!-- 10MB 제한 -->
+		<beans:property name="defaultEncoding" value="UTF-8" />
+	</beans:bean>
 	<!-- JSP 뷰 리졸버 -->
-	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<beans:bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
 	<!-- 컨트롤러 스캔 -->
-	<context:component-scan base-package="com.travel.controller" />
+	<context:component-scan
+		base-package="com.travel.controller" />
 
 </beans:beans>

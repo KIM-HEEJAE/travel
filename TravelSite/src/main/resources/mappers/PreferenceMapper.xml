@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.travel.mapper.PreferenceMapper">
+
+    <!-- 취향 등록 -->
+    <insert id="insertPreference" parameterType="com.travel.dto.PreferenceDTO">
+        INSERT INTO TRV_MEMBER_PREFERENCE (PREF_ID, MEMBER_ID, TRAVEL_STYLE, BUDGET_RANGE, PREFER_DOMESTIC)
+        VALUES (TRV_PREF_SEQ.NEXTVAL, #{memberId}, #{travelStyle}, #{budgetRange}, #{preferDomestic})
+    </insert>
+
+    <!-- 특정 회원 취향 조회 -->
+    <select id="selectPreferenceByMemberId" parameterType="int" resultType="com.travel.dto.PreferenceDTO">
+        SELECT
+            PREF_ID          AS prefId,
+            MEMBER_ID        AS memberId,
+            TRAVEL_STYLE     AS travelStyle,
+            BUDGET_RANGE     AS budgetRange,
+            PREFER_DOMESTIC  AS preferDomestic
+        FROM TRV_MEMBER_PREFERENCE
+        WHERE MEMBER_ID = #{memberId}
+    </select>
+
+    <!-- 여행 스타일별 통계 (원형 그래프) -->
+    <select id="selectStyleStats" resultType="map">
+        SELECT TRAVEL_STYLE AS name, COUNT(*) AS count
+        FROM TRV_MEMBER_PREFERENCE
+        GROUP BY TRAVEL_STYLE
+        ORDER BY COUNT(*) DESC
+    </select>
+
+    <!-- 예산대별 통계 (막대 그래프) -->
+    <select id="selectBudgetStats" resultType="map">
+        SELECT BUDGET_RANGE AS name, COUNT(*) AS count
+        FROM TRV_MEMBER_PREFERENCE
+        GROUP BY BUDGET_RANGE
+        ORDER BY COUNT(*) DESC
+    </select>
+
+    <!-- 국내/해외 선호 통계 -->
+    <select id="selectDomesticStats" resultType="map">
+        SELECT PREFER_DOMESTIC AS name, COUNT(*) AS count
+        FROM TRV_MEMBER_PREFERENCE
+        GROUP BY PREFER_DOMESTIC
+        ORDER BY COUNT(*) DESC
+    </select>
+
+    <!-- 게시판 지역별 인기 여행지 TOP5 -->
+    <select id="selectPopularRegions" resultType="map">
+        SELECT * FROM (
+            SELECT REGION AS name, COUNT(*) AS count
+            FROM TRV_BOARD
+            WHERE REGION IS NOT NULL
+            GROUP BY REGION
+            ORDER BY COUNT(*) DESC
+        )
+        WHERE ROWNUM &lt;= 5
+    </select>
+
+</mapper>

@@ -17,6 +17,7 @@
                     B.CATEGORY     AS category,
                     B.VIEW_CNT     AS viewCnt,
                     B.REG_DATE     AS regDate,
+                    B.IMAGE_PATH   AS imagePath,
                     M.NAME         AS memberName
                 FROM TRV_BOARD B
                 JOIN TRV_MEMBER M ON B.MEMBER_ID = M.MEMBER_ID
@@ -61,6 +62,7 @@
             B.CATEGORY     AS category,
             B.VIEW_CNT     AS viewCnt,
             B.REG_DATE     AS regDate,
+            B.IMAGE_PATH   AS imagePath,
             M.NAME         AS memberName
         FROM TRV_BOARD B
         JOIN TRV_MEMBER M ON B.MEMBER_ID = M.MEMBER_ID
@@ -69,8 +71,8 @@
 
     <!-- 게시글 등록 -->
     <insert id="insertBoard" parameterType="com.travel.dto.BoardDTO">
-        INSERT INTO TRV_BOARD (BOARD_ID, MEMBER_ID, TITLE, CONTENT, REGION, CATEGORY)
-        VALUES (TRV_BOARD_SEQ.NEXTVAL, #{memberId}, #{title}, #{content}, #{region}, #{category})
+        INSERT INTO TRV_BOARD (BOARD_ID, MEMBER_ID, TITLE, CONTENT, REGION, CATEGORY, IMAGE_PATH)
+        VALUES (TRV_BOARD_SEQ.NEXTVAL, #{memberId}, #{title}, #{content}, #{region}, #{category}, #{imagePath})
     </insert>
 
     <!-- 게시글 수정 -->
@@ -80,6 +82,9 @@
             CONTENT = #{content},
             REGION = #{region},
             CATEGORY = #{category}
+            <if test="imagePath != null">
+                , IMAGE_PATH = #{imagePath}
+            </if>
         WHERE BOARD_ID = #{boardId}
     </update>
 
