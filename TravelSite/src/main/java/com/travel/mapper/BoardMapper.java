@@ -21,4 +21,6 @@ public interface BoardMapper {
 
 	void deleteBoard(int boardId);
 
+	List<BoardDTO> selectBoardsByMemberId(int memberId);
+
 }

@@ -97,5 +97,16 @@
     <update id="increaseViewCnt" parameterType="int">
         UPDATE TRV_BOARD SET VIEW_CNT = VIEW_CNT + 1 WHERE BOARD_ID = #{boardId}
     </update>
-
+<select id="selectBoardsByMemberId" parameterType="int" resultType="com.travel.dto.BoardDTO">
+    SELECT 
+        B.BOARD_ID     AS boardId,
+        B.TITLE        AS title,
+        B.REGION       AS region,
+        B.CATEGORY     AS category,
+        B.VIEW_CNT     AS viewCnt,
+        B.REG_DATE     AS regDate
+    FROM TRV_BOARD B
+    WHERE B.MEMBER_ID = #{memberId}
+    ORDER BY B.BOARD_ID DESC
+</select>
 </mapper>

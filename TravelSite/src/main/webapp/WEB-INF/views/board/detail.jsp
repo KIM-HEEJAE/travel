@@ -47,9 +47,20 @@
     </div>
 
     <div class="content">
+     <c:if test="${not empty board.imagePath}">
+        <img src="${pageContext.request.contextPath}/image/view?filename=${board.imagePath}" 
+             style="max-width: 100%; border-radius: 8px; margin-bottom: 16px;">
+    </c:if>
         ${board.content}
     </div>
-
+<div class="like-section" style="text-align: center; margin: 24px 0;">
+    <button id="likeBtn" onclick="toggleLike()" 
+            style="background: none; border: 2px solid #ddd; border-radius: 30px; 
+                   padding: 10px 24px; cursor: pointer; font-size: 15px;">
+        <span id="likeIcon">${isLiked ? '❤️' : '🤍'}</span>
+        좋아요 <span id="likeCount">${likeCount}</span>
+    </button>
+</div>
     <div class="btn-group">
         <button type="button" onclick="location.href='${pageContext.request.contextPath}/board/modify?boardId=${board.boardId}'">수정</button>
         <button type="button" onclick="deletePost(${board.boardId})">삭제</button>
@@ -188,6 +199,24 @@
         $(function() {
             loadComments();
         });
+        
+        function toggleLike() {
+            $.ajax({
+                url: contextPath + '/like/toggle',
+                type: 'POST',
+                data: { boardId: boardId },
+                dataType: 'json',
+                success: function(res) {
+                    if (res.error === 'login_required') {
+                        alert('로그인이 필요합니다.');
+                        location.href = contextPath + '/member/login';
+                        return;
+                    }
+                    $('#likeIcon').text(res.liked ? '❤️' : '🤍');
+                    $('#likeCount').text(res.likeCount);
+                }
+            });
+        }
     </script>
 </body>
 </html>

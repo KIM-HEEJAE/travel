@@ -39,4 +39,7 @@ public class BoardService {
     public void removeBoard(int boardId) {
         boardMapper.deleteBoard(boardId);
     }
+    public List<BoardDTO> getMyBoards(int memberId) {
+        return boardMapper.selectBoardsByMemberId(memberId);
+    }
 }

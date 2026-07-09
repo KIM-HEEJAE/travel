@@ -9,13 +9,12 @@
         input[type=text], textarea, select { width: 100%; padding: 8px; margin: 6px 0 16px 0; box-sizing: border-box; }
         textarea { height: 200px; }
         label { font-weight: bold; }
+        #previewImg { max-width: 100%; margin-top: 10px; border-radius: 8px; display: none; }
     </style>
 </head>
 <body>
     <h2>게시글 작성</h2>
-    <form action="${pageContext.request.contextPath}/board/insert" method="post">
-
-       
+    <form action="${pageContext.request.contextPath}/board/insert" method="post" enctype="multipart/form-data">
 
         <label>제목</label>
         <input type="text" name="title" required>
@@ -30,11 +29,29 @@
         <label>여행 지역</label>
         <input type="text" name="region" placeholder="예: 제주도, 부산 등">
 
+        <label>사진 첨부</label>
+        <input type="file" name="imageFile" id="imageFile" accept="image/*" onchange="previewImage(this)">
+        <img id="previewImg" src="">
+
         <label>내용</label>
         <textarea name="content" required></textarea>
 
         <button type="submit">등록</button>
         <button type="button" onclick="location.href='${pageContext.request.contextPath}/board/list'">취소</button>
     </form>
+
+    <script>
+        function previewImage(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    var img = document.getElementById('previewImg');
+                    img.src = e.target.result;
+                    img.style.display = 'block';
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
 </body>
 </html>

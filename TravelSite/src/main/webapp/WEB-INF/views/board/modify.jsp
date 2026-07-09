@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,11 +11,13 @@
         input[type=text], textarea, select { width: 100%; padding: 8px; margin: 6px 0 16px 0; box-sizing: border-box; }
         textarea { height: 200px; }
         label { font-weight: bold; }
+        #currentImg, #previewImg { max-width: 100%; margin-top: 10px; border-radius: 8px; }
+        #previewImg { display: none; }
     </style>
 </head>
 <body>
     <h2>게시글 수정</h2>
-    <form action="${pageContext.request.contextPath}/board/update" method="post">
+    <form action="${pageContext.request.contextPath}/board/update" method="post" enctype="multipart/form-data">
 
         <input type="hidden" name="boardId" value="${board.boardId}">
 
@@ -30,11 +34,32 @@
         <label>여행 지역</label>
         <input type="text" name="region" value="${board.region}">
 
+        <label>사진 첨부 (변경 시에만 업로드)</label>
+        <c:if test="${not empty board.imagePath}">
+            <img id="currentImg" src="${pageContext.request.contextPath}/image/view?filename=${board.imagePath}">
+        </c:if>
+        <input type="file" name="imageFile" id="imageFile" accept="image/*" onchange="previewImage(this)">
+        <img id="previewImg" src="">
+
         <label>내용</label>
         <textarea name="content" required>${board.content}</textarea>
 
         <button type="submit">수정 완료</button>
         <button type="button" onclick="location.href='${pageContext.request.contextPath}/board/detail?boardId=${board.boardId}'">취소</button>
     </form>
+
+    <script>
+        function previewImage(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    var img = document.getElementById('previewImg');
+                    img.src = e.target.result;
+                    img.style.display = 'block';
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
 </body>
 </html>

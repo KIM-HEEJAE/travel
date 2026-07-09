@@ -20,6 +20,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.travel.dto.BoardDTO;
 import com.travel.dto.MemberDTO;
 import com.travel.service.BoardService;
+import com.travel.service.LikeService;
+
 import page.PageUtil;
 
 @Controller
@@ -60,11 +62,24 @@ public class BoardController {
         return "board/list";
     }
 
-    // 게시글 상세
+    @Autowired
+    private LikeService likeService;
+
     @RequestMapping("/detail")
-    public String detail(@RequestParam("boardId") int boardId, Model model) {
+    public String detail(@RequestParam("boardId") int boardId, HttpSession session, Model model) {
         BoardDTO board = boardService.getBoardDetail(boardId);
         model.addAttribute("board", board);
+
+        int likeCount = likeService.getLikeCount(boardId);
+        model.addAttribute("likeCount", likeCount);
+
+        MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
+        boolean isLiked = false;
+        if (loginMember != null) {
+            isLiked = likeService.isLikedByMe(boardId, loginMember.getMemberId());
+        }
+        model.addAttribute("isLiked", isLiked);
+
         return "board/detail";
     }
 
