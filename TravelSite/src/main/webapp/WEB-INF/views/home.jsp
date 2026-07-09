@@ -157,14 +157,20 @@ body {
 		<a href="${pageContext.request.contextPath}/" class="logo">✈
 			TravelSite</a>
 		<div class="nav">
-			<a href="${pageContext.request.contextPath}/board/list">게시판</a> <a
-				href="${pageContext.request.contextPath}/preference/dashboard">취향통계</a>
+			<a href="${pageContext.request.contextPath}/flight/list">항공권</a> 
+			
+				<a href="${pageContext.request.contextPath}/board/list">게시판</a>
+				    <a href="${pageContext.request.contextPath}/hotel/list">숙소</a>
+				 
+				<a href="${pageContext.request.contextPath}/preference/dashboard">취향통계</a>
 			<a href="${pageContext.request.contextPath}/chat/ask">AI 상담</a>
 
 			<c:choose>
 				<c:when test="${not empty sessionScope.loginMember}">
 					<a href="${pageContext.request.contextPath}/preference/survey">취향설문</a>
 					<a href="#">${sessionScope.loginMember.name}님</a>
+					<a href="${pageContext.request.contextPath}/flight/myReservations">내
+						예약</a>
 					<a href="${pageContext.request.contextPath}/mypage">마이페이지</a> |
             <a href="${pageContext.request.contextPath}/member/logout">로그아웃</a>
 				</c:when>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.travel.mapper.ReservationMapper">
+
+    <insert id="insertReservation" parameterType="com.travel.dto.ReservationDTO">
+        INSERT INTO TRV_RESERVATION (RESERVATION_ID, FLIGHT_ID, MEMBER_ID, PASSENGER_NAME)
+        VALUES (TRV_RESERVATION_SEQ.NEXTVAL, #{flightId}, #{memberId}, #{passengerName})
+    </insert>
+
+    <select id="selectReservationsByMemberId" parameterType="int" resultType="com.travel.dto.ReservationDTO">
+        SELECT
+            R.RESERVATION_ID  AS reservationId,
+            R.FLIGHT_ID       AS flightId,
+            R.MEMBER_ID       AS memberId,
+            R.PASSENGER_NAME  AS passengerName,
+            R.RESERVE_DATE    AS reserveDate,
+            R.STATUS          AS status,
+            F.AIRLINE         AS airline,
+            F.DEPARTURE       AS departure,
+            F.ARRIVAL         AS arrival,
+            F.DEPART_TIME     AS departTime,
+            F.FLIGHT_DATE     AS flightDate,
+            F.PRICE           AS price
+        FROM TRV_RESERVATION R
+        JOIN TRV_FLIGHT F ON R.FLIGHT_ID = F.FLIGHT_ID
+        WHERE R.MEMBER_ID = #{memberId}
+        ORDER BY R.RESERVATION_ID DESC
+    </select>
+
+    <delete id="deleteReservation" parameterType="int">
+        DELETE FROM TRV_RESERVATION WHERE RESERVATION_ID = #{reservationId}
+    </delete>
+
+    <select id="selectReservationById" parameterType="int" resultType="com.travel.dto.ReservationDTO">
+        SELECT
+            RESERVATION_ID  AS reservationId,
+            FLIGHT_ID       AS flightId,
+            MEMBER_ID       AS memberId,
+            PASSENGER_NAME  AS passengerName,
+            RESERVE_DATE    AS reserveDate,
+            STATUS          AS status
+        FROM TRV_RESERVATION
+        WHERE RESERVATION_ID = #{reservationId}
+    </select>
+
+</mapper>

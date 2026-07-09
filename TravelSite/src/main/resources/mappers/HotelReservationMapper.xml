@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.travel.mapper.HotelReservationMapper">
+
+    <insert id="insertHotelReservation" parameterType="com.travel.dto.HotelReservationDTO">
+    INSERT INTO TRV_HOTEL_RESERVATION (HOTEL_RESV_ID, HOTEL_ID, MEMBER_ID, CHECK_IN, CHECK_OUT, GUEST_NAME, TOTAL_PRICE)
+    VALUES (TRV_HOTEL_RESV_SEQ.NEXTVAL, #{hotelId}, #{memberId}, #{checkIn}, #{checkOut}, #{guestName}, #{totalPrice})
+</insert>
+
+    <select id="selectHotelReservationsByMemberId" parameterType="int" resultType="com.travel.dto.HotelReservationDTO">
+        SELECT
+            R.HOTEL_RESV_ID   AS hotelResvId,
+            R.HOTEL_ID        AS hotelId,
+            R.MEMBER_ID       AS memberId,
+            R.CHECK_IN        AS checkIn,
+            R.CHECK_OUT       AS checkOut,
+            R.GUEST_NAME      AS guestName,
+            R.RESERVE_DATE    AS reserveDate,
+            R.STATUS          AS status,
+            H.HOTEL_NAME      AS hotelName,
+            H.LOCATION        AS location,
+            R.TOTAL_PRICE     AS totalPrice,
+            H.PRICE_PER_NIGHT AS pricePerNight
+        FROM TRV_HOTEL_RESERVATION R
+        JOIN TRV_HOTEL H ON R.HOTEL_ID = H.HOTEL_ID
+        WHERE R.MEMBER_ID = #{memberId}
+        ORDER BY R.HOTEL_RESV_ID DESC
+    </select>
+
+    <delete id="deleteHotelReservation" parameterType="int">
+        DELETE FROM TRV_HOTEL_RESERVATION WHERE HOTEL_RESV_ID = #{hotelResvId}
+    </delete>
+
+    <select id="selectHotelReservationById" parameterType="int" resultType="com.travel.dto.HotelReservationDTO">
+        SELECT
+            HOTEL_RESV_ID  AS hotelResvId,
+            HOTEL_ID       AS hotelId,
+            MEMBER_ID      AS memberId,
+            CHECK_IN       AS checkIn,
+            CHECK_OUT      AS checkOut,
+            GUEST_NAME     AS guestName,
+            RESERVE_DATE   AS reserveDate,
+            STATUS         AS status
+        FROM TRV_HOTEL_RESERVATION
+        WHERE HOTEL_RESV_ID = #{hotelResvId}
+    </select>
+
+</mapper>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.travel.mapper.FlightMapper">
+
+    <select id="selectFlightList" parameterType="map" resultType="com.travel.dto.FlightDTO">
+        SELECT
+            FLIGHT_ID    AS flightId,
+            AIRLINE      AS airline,
+            DEPARTURE    AS departure,
+            ARRIVAL      AS arrival,
+            FLIGHT_TYPE  AS flightType,
+            DEPART_TIME  AS departTime,
+            ARRIVE_TIME  AS arriveTime,
+            DURATION     AS duration,
+            PRICE        AS price,
+            SEAT_CLASS   AS seatClass,
+            FLIGHT_DATE  AS flightDate
+        FROM TRV_FLIGHT
+        <where>
+            <if test="flightType != null and flightType != ''">
+                AND FLIGHT_TYPE = #{flightType}
+            </if>
+            <if test="departure != null and departure != ''">
+                AND DEPARTURE = #{departure}
+            </if>
+            <if test="arrival != null and arrival != ''">
+                AND ARRIVAL LIKE '%' || #{arrival} || '%'
+            </if>
+        </where>
+        ORDER BY FLIGHT_DATE ASC, DEPART_TIME ASC
+    </select>
+
+    <select id="selectFlightById" parameterType="int" resultType="com.travel.dto.FlightDTO">
+        SELECT
+            FLIGHT_ID    AS flightId,
+            AIRLINE      AS airline,
+            DEPARTURE    AS departure,
+            ARRIVAL      AS arrival,
+            FLIGHT_TYPE  AS flightType,
+            DEPART_TIME  AS departTime,
+            ARRIVE_TIME  AS arriveTime,
+            DURATION     AS duration,
+            PRICE        AS price,
+            SEAT_CLASS   AS seatClass,
+            FLIGHT_DATE  AS flightDate
+        FROM TRV_FLIGHT
+        WHERE FLIGHT_ID = #{flightId}
+    </select>
+
+</mapper>

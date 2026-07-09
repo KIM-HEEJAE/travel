@@ -50,16 +50,16 @@ public class MemberController {
 		MemberDTO member = memberService.login(userId,password);
 		if(member != null) {
 			session.setAttribute("loginMember",member);
-			return "redirect:/board/list";
+			return "redirect:/";
 		}else {
 			model.addAttribute("error", "아이디 또는 비밀번호가 일치하지 않습니다.");
-			return "member/login";  // 여기 앞에 "/" 있었던 것도 지웠어요
+			return "member/login";
 		}
 	}
 	
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "redirect:/board/list";
+		return "redirect:/";
 	}
 }
