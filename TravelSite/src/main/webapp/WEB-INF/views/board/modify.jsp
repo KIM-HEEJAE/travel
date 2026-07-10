@@ -1,21 +1,20 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>게시글 수정</title>
     <style>
-        body { font-family: 'Malgun Gothic', sans-serif; max-width: 700px; margin: 40px auto; }
-        input[type=text], textarea, select { width: 100%; padding: 8px; margin: 6px 0 16px 0; box-sizing: border-box; }
-        textarea { height: 200px; }
-        label { font-weight: bold; }
         #currentImg, #previewImg { max-width: 100%; margin-top: 10px; border-radius: 8px; }
         #previewImg { display: none; }
     </style>
 </head>
 <body>
+<jsp:include page="../header.jsp" />
+
+<div class="page-medium">
+
     <h2>게시글 수정</h2>
     <form action="${pageContext.request.contextPath}/board/update" method="post" enctype="multipart/form-data">
 
@@ -44,9 +43,11 @@
         <label>내용</label>
         <textarea name="content" required>${board.content}</textarea>
 
-        <button type="submit">수정 완료</button>
-        <button type="button" onclick="location.href='${pageContext.request.contextPath}/board/detail?boardId=${board.boardId}'">취소</button>
+        <button type="submit" class="btn-primary">수정 완료</button>
+        <button type="button" class="btn-secondary" onclick="location.href='${pageContext.request.contextPath}/board/detail?boardId=${board.boardId}'">취소</button>
     </form>
+
+</div>
 
     <script>
         function previewImage(input) {

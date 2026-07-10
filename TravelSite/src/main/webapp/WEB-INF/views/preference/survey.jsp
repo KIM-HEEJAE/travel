@@ -27,6 +27,9 @@
     </style>
 </head>
 <body>
+<jsp:include page="../header.jsp" />
+
+
     <h2>✈ 여행 취향 설문</h2>
     <p class="desc">당신의 여행 취향을 알려주세요! 다른 회원들과 통계로 비교해볼 수 있어요.</p>
 

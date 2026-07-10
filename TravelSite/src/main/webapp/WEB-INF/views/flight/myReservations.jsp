@@ -32,6 +32,9 @@
     </style>
 </head>
 <body>
+<jsp:include page="../header.jsp" />
+
+
     <div class="top-link">
         <a href="${pageContext.request.contextPath}/flight/list">← 항공권 검색으로</a>
     </div>

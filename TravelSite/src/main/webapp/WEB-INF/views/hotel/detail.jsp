@@ -32,6 +32,9 @@
     </style>
 </head>
 <body>
+<jsp:include page="../header.jsp" />
+
+
     <div class="top-link">
         <a href="${pageContext.request.contextPath}/hotel/list">← 숙소 목록으로</a>
     </div>

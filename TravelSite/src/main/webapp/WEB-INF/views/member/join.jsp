@@ -21,6 +21,9 @@
     </style>
 </head>
 <body>
+<jsp:include page="../header.jsp" />
+
+
     <h2>회원가입</h2>
 
     <c:if test="${not empty error}">

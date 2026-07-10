@@ -39,6 +39,9 @@
     </style>
 </head>
 <body>
+<jsp:include page="../header.jsp" />
+
+
     <h2>숙소 예약</h2>
 
     <c:if test="${not empty error}">

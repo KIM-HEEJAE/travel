@@ -7,66 +7,14 @@
 <meta charset="UTF-8">
 <title>여행 게시판</title>
 <style>
-body {
-	font-family: 'Malgun Gothic', sans-serif;
-	max-width: 900px;
-	margin: 40px auto;
-}
-
-table {
-	width: 100%;
-	border-collapse: collapse;
-	margin-top: 20px;
-}
-
-th, td {
-	border-bottom: 1px solid #ddd;
-	padding: 10px;
-	text-align: center;
-}
-
-th {
-	background-color: #f5f5f5;
-}
-
-a {
-	text-decoration: none;
-	color: #333;
-}
-
-.title-link:hover {
-	color: #2d7ff9;
-}
-
-.search-box {
-	margin-top: 20px;
-	text-align: right;
-}
-
-.pagination {
-	text-align: center;
-	margin-top: 20px;
-}
-
-.pagination a {
-	margin: 0 5px;
-	padding: 5px 10px;
-	border: 1px solid #ddd;
-}
-
-.pagination .current {
-	font-weight: bold;
-	background-color: #2d7ff9;
-	color: white;
-}
-
-.write-btn {
-	float: right;
-	margin-bottom: 10px;
-}
+.write-btn { float: right; margin-bottom: 10px; }
 </style>
 </head>
 <body>
+<jsp:include page="../header.jsp" />
+
+<div class="page-wide">
+
 	<h2>✈ 여행 게시판</h2>
 	<div style="text-align: right; margin-bottom: 10px;">
 		<c:choose>
@@ -140,7 +88,7 @@ a {
 	<!-- 페이징 -->
 	<div class="pagination">
 		<c:if test="${pageUtil.curBlock > 1}">
-			<a
+			
 				href="${pageContext.request.contextPath}/board/list?curPage=${pageUtil.prevPage}">이전</a>
 		</c:if>
 
@@ -151,17 +99,18 @@ a {
 					<span class="current">${i}</span>
 				</c:when>
 				<c:otherwise>
-					<a
+					
 						href="${pageContext.request.contextPath}/board/list?curPage=${i}">${i}</a>
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
 
 		<c:if test="${pageUtil.curBlock < pageUtil.totBlock}">
-			<a
+			
 				href="${pageContext.request.contextPath}/board/list?curPage=${pageUtil.nextPage}">다음</a>
 		</c:if>
 	</div>
 
+</div>
 </body>
 </html>

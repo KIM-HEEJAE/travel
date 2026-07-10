@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
@@ -7,7 +8,6 @@
     <title>게시글 상세</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <style>
-        body { font-family: 'Malgun Gothic', sans-serif; max-width: 700px; margin: 40px auto; }
         .info { color: #888; font-size: 14px; margin-bottom: 20px; }
         .content { border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; padding: 20px 0; min-height: 150px; }
         .btn-group { margin-top: 20px; text-align: right; }
@@ -40,6 +40,10 @@
     </style>
 </head>
 <body>
+<jsp:include page="../header.jsp" />
+
+<div class="page-medium">
+
     <h2>${board.title}</h2>
     <div class="info">
         작성자: ${board.memberName} | 지역: ${board.region} | 조회수: ${board.viewCnt} |
@@ -88,6 +92,8 @@
         <ul class="comment-list" id="commentList"></ul>
     </div>
 
+</div>
+
     <script>
         var boardId = ${board.boardId};
         var loginMemberId = ${not empty sessionScope.loginMember ? sessionScope.loginMember.memberId : 0};
@@ -130,7 +136,7 @@
                         deleteBtn +
                     '</li>'
                 );
-                $item.find('.comment-content').text(c.content); // XSS 방지 위해 text()로 삽입
+                $item.find('.comment-content').text(c.content);
                 $list.append($item);
             });
         }
@@ -177,7 +183,6 @@
             }
         }
 
-        // 엔터키로 댓글 등록
         $(document).on('keypress', '#commentInput', function(e) {
             if (e.which === 13) {
                 submitComment();
@@ -195,7 +200,6 @@
                    pad(d.getHours()) + ':' + pad(d.getMinutes());
         }
 
-        // 페이지 로드 시 댓글 불러오기
         $(function() {
             loadComments();
         });

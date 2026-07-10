@@ -47,6 +47,9 @@
     </style>
 </head>
 <body>
+<jsp:include page="../header.jsp" />
+
+
     <div class="top-link">
         <a href="${pageContext.request.contextPath}/">← 홈 화면으로 돌아가기</a>
     </div>

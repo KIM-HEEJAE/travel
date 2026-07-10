@@ -19,6 +19,9 @@
     </style>
 </head>
 <body>
+<jsp:include page="../header.jsp" />
+
+
     <h2>숙박 리뷰 작성</h2>
 
     <form action="${pageContext.request.contextPath}/review/insert" method="post" id="reviewForm">

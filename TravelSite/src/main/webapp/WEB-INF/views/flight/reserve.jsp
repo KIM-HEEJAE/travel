@@ -24,6 +24,9 @@
     </style>
 </head>
 <body>
+<jsp:include page="../header.jsp" />
+
+
     <h2>항공권 예약</h2>
 
     <div class="summary">

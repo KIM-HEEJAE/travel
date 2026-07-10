@@ -22,6 +22,9 @@
     </style>
 </head>
 <body>
+<jsp:include page="../header.jsp" />
+
+
     <div class="top-btn">
         <a href="${pageContext.request.contextPath}/board/list">← 게시판으로 돌아가기</a>
     </div>

@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <title>게시글 작성</title>
     <style>
-        body { font-family: 'Malgun Gothic', sans-serif; max-width: 700px; margin: 40px auto; }
-        input[type=text], textarea, select { width: 100%; padding: 8px; margin: 6px 0 16px 0; box-sizing: border-box; }
-        textarea { height: 200px; }
-        label { font-weight: bold; }
         #previewImg { max-width: 100%; margin-top: 10px; border-radius: 8px; display: none; }
     </style>
 </head>
 <body>
+<jsp:include page="../header.jsp" />
+
+<div class="page-medium">
+
     <h2>게시글 작성</h2>
     <form action="${pageContext.request.contextPath}/board/insert" method="post" enctype="multipart/form-data">
 
@@ -36,9 +36,11 @@
         <label>내용</label>
         <textarea name="content" required></textarea>
 
-        <button type="submit">등록</button>
-        <button type="button" onclick="location.href='${pageContext.request.contextPath}/board/list'">취소</button>
+        <button type="submit" class="btn-primary">등록</button>
+        <button type="button" class="btn-secondary" onclick="location.href='${pageContext.request.contextPath}/board/list'">취소</button>
     </form>
+
+</div>
 
     <script>
         function previewImage(input) {
