@@ -22,4 +22,8 @@ public class HotelService {
     public HotelDTO getHotel(int hotelId) {
         return hotelMapper.selectHotelById(hotelId);
     }
+    
+    public List<HotelDTO> getTopRatedHotels(int limit) {
+        return hotelMapper.selectTopRatedHotels(limit);
+    }
 }

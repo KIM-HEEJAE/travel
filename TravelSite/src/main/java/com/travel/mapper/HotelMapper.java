@@ -10,4 +10,7 @@ public interface HotelMapper {
     List<HotelDTO> selectHotelList(Map<String, Object> params);
 
     HotelDTO selectHotelById(int hotelId);
+    
+    List<HotelDTO> selectTopRatedHotels(int limit);
+
 }

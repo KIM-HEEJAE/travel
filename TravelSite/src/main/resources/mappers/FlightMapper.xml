@@ -33,6 +33,31 @@
         ORDER BY FLIGHT_DATE ASC, DEPART_TIME ASC
     </select>
 
+<!-- 예약 건수 많은 순 인기 항공권 -->
+<select id="selectPopularFlights" parameterType="int" resultType="com.travel.dto.FlightDTO">
+    SELECT * FROM (
+        SELECT
+            F.FLIGHT_ID    AS flightId,
+            F.AIRLINE      AS airline,
+            F.DEPARTURE    AS departure,
+            F.ARRIVAL      AS arrival,
+            F.FLIGHT_TYPE  AS flightType,
+            F.DEPART_TIME  AS departTime,
+            F.ARRIVE_TIME  AS arriveTime,
+            F.DURATION     AS duration,
+            F.PRICE        AS price,
+            F.SEAT_CLASS   AS seatClass,
+            F.FLIGHT_DATE  AS flightDate,
+            COUNT(R.RESERVATION_ID) AS resvCount
+        FROM TRV_FLIGHT F
+        LEFT JOIN TRV_RESERVATION R ON F.FLIGHT_ID = R.FLIGHT_ID
+        GROUP BY
+            F.FLIGHT_ID, F.AIRLINE, F.DEPARTURE, F.ARRIVAL, F.FLIGHT_TYPE,
+            F.DEPART_TIME, F.ARRIVE_TIME, F.DURATION, F.PRICE, F.SEAT_CLASS, F.FLIGHT_DATE
+        ORDER BY resvCount DESC, F.FLIGHT_DATE ASC
+    )
+    WHERE ROWNUM &lt;= #{limit}
+</select>
     <select id="selectFlightById" parameterType="int" resultType="com.travel.dto.FlightDTO">
         SELECT
             FLIGHT_ID    AS flightId,

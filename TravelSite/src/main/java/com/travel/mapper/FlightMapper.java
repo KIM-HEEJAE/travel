@@ -10,4 +10,7 @@ public interface FlightMapper {
     List<FlightDTO> selectFlightList(Map<String, Object> params);
 
     FlightDTO selectFlightById(int flightId);
+    
+    List<FlightDTO> selectPopularFlights(int limit);
+
 }

@@ -67,56 +67,5 @@
             }
         }
     </script>
-    <div class="top-link">
-		<a href="${pageContext.request.contextPath}/hotel/list">← 숙소 검색으로</a>
-	</div>
-	<h2>🏨 내 숙소 예약</h2>
-
-	<c:choose>
-		<c:when test="${empty myReservations}">
-			<div class="empty">
-				예약 내역이 없습니다.<br> <a
-					href="${pageContext.request.contextPath}/hotel/list">숙소 검색하러 가기</a>
-			</div>
-		</c:when>
-		<c:otherwise>
-			<c:forEach var="r" items="${myReservations}">
-				<div class="resv-card">
-					<div class="resv-info">
-						<div class="name">${r.hotelName}</div>
-						<div>${r.location}·예약자: ${r.guestName}</div>
-						<div>
-							<fmt:formatDate value="${r.checkIn}" pattern="yyyy-MM-dd" />
-							~
-							<fmt:formatDate value="${r.checkOut}" pattern="yyyy-MM-dd" />
-						</div>
-						<div>
-							<fmt:formatNumber value="${r.totalPrice}" pattern="#,###" />
-							원 (총 결제금액)
-						</div>
-						<span class="status">${r.status}</span> <span class="status">${r.status}</span>
-						<c:if test="${r.checkOut lt now}">
-							<div style="margin-top: 8px;">
-								<a
-									href="${pageContext.request.contextPath}/review/write?hotelResvId=${r.hotelResvId}"
-									style="font-size: 12px; color: #2d7ff9; text-decoration: none;">리뷰
-									작성하기</a>
-							</div>
-						</c:if>
-					</div>
-					<button class="cancel-btn"
-						onclick="cancelReservation(${r.hotelResvId})">예약취소</button>
-				</div>
-			</c:forEach>
-		</c:otherwise>
-	</c:choose>
-
-	<script>
-        function cancelReservation(hotelResvId) {
-            if (confirm('예약을 취소하시겠습니까?')) {
-                location.href = '${pageContext.request.contextPath}/hotel/cancel?hotelResvId=' + hotelResvId;
-            }
-        }
-    </script>
 </body>
 </html>

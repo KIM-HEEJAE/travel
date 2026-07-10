@@ -40,5 +40,21 @@
         FROM TRV_HOTEL
         WHERE HOTEL_ID = #{hotelId}
     </select>
-
+<!-- 평점 높은 순 추천 숙소 -->
+<select id="selectTopRatedHotels" parameterType="int" resultType="com.travel.dto.HotelDTO">
+    SELECT * FROM (
+        SELECT
+            H.HOTEL_ID          AS hotelId,
+            H.HOTEL_NAME        AS hotelName,
+            H.LOCATION          AS location,
+            H.HOTEL_TYPE        AS hotelType,
+            H.PRICE_PER_NIGHT   AS pricePerNight,
+            NVL(ROUND((SELECT AVG(RATING) FROM TRV_HOTEL_REVIEW WHERE HOTEL_ID = H.HOTEL_ID), 1), H.RATING) AS rating,
+            H.DESCRIPTION       AS description,
+            H.IMAGE_PATH        AS imagePath
+        FROM TRV_HOTEL H
+        ORDER BY rating DESC
+    )
+    WHERE ROWNUM &lt;= #{limit}
+</select>
 </mapper>

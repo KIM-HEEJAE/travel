@@ -22,4 +22,7 @@ public class FlightService {
     public FlightDTO getFlight(int flightId) {
         return flightMapper.selectFlightById(flightId);
     }
+    public List<FlightDTO> getPopularFlights(int limit) {
+        return flightMapper.selectPopularFlights(limit);
+    }
 }

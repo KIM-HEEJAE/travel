@@ -7,6 +7,57 @@
 <meta charset="UTF-8">
 <title>여행 커뮤니티 - TravelSite</title>
 <style>
+.promo-grid {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 16px;
+	margin-top: 20px;
+}
+
+.promo-card {
+	border: 1px solid #eee;
+	border-radius: 12px;
+	padding: 16px;
+	text-decoration: none;
+	color: #333;
+	transition: box-shadow 0.2s;
+}
+
+.promo-card:hover {
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.promo-route {
+	font-size: 15px;
+	font-weight: bold;
+	margin-bottom: 6px;
+}
+
+.promo-sub {
+	font-size: 12px;
+	color: #888;
+	margin-bottom: 10px;
+}
+
+.promo-price {
+	font-size: 16px;
+	font-weight: bold;
+	color: #2d7ff9;
+}
+
+.section-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20px;
+}
+
+.section-header .more-link {
+	font-size: 13px;
+	color: #999;
+	text-decoration: none;
+}
+
 * {
 	box-sizing: border-box;
 }
@@ -157,19 +208,19 @@ body {
 		<a href="${pageContext.request.contextPath}/" class="logo">✈
 			TravelSite</a>
 		<div class="nav">
-			<a href="${pageContext.request.contextPath}/flight/list">항공권</a> 
-			
-				<a href="${pageContext.request.contextPath}/board/list">게시판</a>
-				    <a href="${pageContext.request.contextPath}/hotel/list">숙소</a>
-				 
-				<a href="${pageContext.request.contextPath}/preference/dashboard">취향통계</a>
+			<a href="${pageContext.request.contextPath}/flight/list">항공권</a> <a
+				href="${pageContext.request.contextPath}/board/list">게시판</a> <a
+				href="${pageContext.request.contextPath}/hotel/list">숙소</a> <a
+				href="${pageContext.request.contextPath}/preference/dashboard">취향통계</a>
 			<a href="${pageContext.request.contextPath}/chat/ask">AI 상담</a>
 
 			<c:choose>
 				<c:when test="${not empty sessionScope.loginMember}">
 					<a href="${pageContext.request.contextPath}/preference/survey">취향설문</a>
 					<a href="#">${sessionScope.loginMember.name}님</a>
-					<a href="${pageContext.request.contextPath}/flight/myReservations">내
+					<a href="${pageContext.request.contextPath}/flight/myReservations">항공권
+						예약</a>
+					<a href="${pageContext.request.contextPath}/hotel/myReservations">숙소
 						예약</a>
 					<a href="${pageContext.request.contextPath}/mypage">마이페이지</a> |
             <a href="${pageContext.request.contextPath}/member/logout">로그아웃</a>
@@ -188,7 +239,63 @@ body {
 		<a href="${pageContext.request.contextPath}/board/list"
 			class="hero-btn">게시판 둘러보기</a>
 	</div>
+	<div class="section">
+		<div class="section-header">
+			<h2 style="margin-bottom: 0;">✈ 인기 항공권</h2>
+			<a href="${pageContext.request.contextPath}/flight/list"
+				class="more-link">전체보기 →</a>
+		</div>
+		<c:choose>
+			<c:when test="${empty promoFlights}">
+				<div class="empty">등록된 항공권이 없습니다.</div>
+			</c:when>
+			<c:otherwise>
+				<div class="promo-grid">
+					<c:forEach var="flight" items="${promoFlights}">
+						<a class="promo-card"
+							href="${pageContext.request.contextPath}/flight/reserve?flightId=${flight.flightId}">
+							<div class="promo-route">${flight.departure}→
+								${flight.arrival}</div>
+							<div class="promo-sub">${flight.airline}·
+								${flight.flightType}</div>
+							<div class="promo-price">
+								<fmt:formatNumber value="${flight.price}" pattern="#,###" />
+								원~
+							</div>
+						</a>
+					</c:forEach>
+				</div>
+			</c:otherwise>
+		</c:choose>
+	</div>
 
+	<div class="section">
+		<div class="section-header">
+			<h2 style="margin-bottom: 0;">🏨 추천 숙소</h2>
+			<a href="${pageContext.request.contextPath}/hotel/list"
+				class="more-link">전체보기 →</a>
+		</div>
+		<c:choose>
+			<c:when test="${empty promoHotels}">
+				<div class="empty">등록된 숙소가 없습니다.</div>
+			</c:when>
+			<c:otherwise>
+				<div class="promo-grid">
+					<c:forEach var="hotel" items="${promoHotels}">
+						<a class="promo-card"
+							href="${pageContext.request.contextPath}/hotel/detail?hotelId=${hotel.hotelId}">
+							<div class="promo-route">${hotel.hotelName}</div>
+							<div class="promo-sub">${hotel.location}· ★ ${hotel.rating}</div>
+							<div class="promo-price">
+								<fmt:formatNumber value="${hotel.pricePerNight}" pattern="#,###" />
+								원 / 1박
+							</div>
+						</a>
+					</c:forEach>
+				</div>
+			</c:otherwise>
+		</c:choose>
+	</div>
 	<div class="section">
 		<h2>최신 여행 후기</h2>
 		<c:choose>
