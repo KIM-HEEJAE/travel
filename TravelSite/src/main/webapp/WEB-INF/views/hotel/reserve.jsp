@@ -8,7 +8,7 @@
     <title>숙소 예약</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <style>
-        body { font-family: 'Malgun Gothic', sans-serif; max-width: 500px; margin: 50px auto; }
+        body { font-family: 'Malgun Gothic', sans-serif;}
         h2 { text-align: center; }
         .summary {
             background: #f7f9fc; border-radius: 12px; padding: 20px; margin-bottom: 24px;

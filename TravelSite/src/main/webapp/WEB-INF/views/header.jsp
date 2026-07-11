@@ -1,19 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<head>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
-</head>
-<style>
-    * { box-sizing: border-box; }
-    body { font-family: 'Malgun Gothic', sans-serif; margin: 0; color: #333; }
-    .header {
-        display: flex; justify-content: space-between; align-items: center;
-        padding: 16px 40px; border-bottom: 1px solid #eee;
-    }
-    .logo { font-size: 22px; font-weight: bold; color: #2d7ff9; text-decoration: none; }
-    .nav a { margin-left: 20px; text-decoration: none; color: #333; font-size: 14px; }
-</style>
-
 <div class="header">
     <a href="${pageContext.request.contextPath}/" class="logo">✈ TravelSite</a>
     <div class="nav">

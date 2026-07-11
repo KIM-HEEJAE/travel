@@ -6,7 +6,7 @@
     <title>여행 AI 상담</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <style>
-        body { font-family: 'Malgun Gothic', sans-serif; max-width: 700px; margin: 30px auto; }
+        body { font-family: 'Malgun Gothic', sans-serif;}
         h2 { text-align: center; }
         .desc { text-align: center; color: #888; margin-bottom: 20px; font-size: 14px; }
 

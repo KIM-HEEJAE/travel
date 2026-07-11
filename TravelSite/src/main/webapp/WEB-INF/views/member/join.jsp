@@ -1,4 +1,3 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -9,7 +8,7 @@
     <title>회원가입</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <style>
-        body { font-family: 'Malgun Gothic', sans-serif; max-width: 500px; margin: 40px auto; }
+        body { font-family: 'Malgun Gothic', sans-serif; }
         input[type=text], input[type=password], input[type=email] {
             width: 100%; padding: 8px; margin: 6px 0 6px 0; box-sizing: border-box;
         }

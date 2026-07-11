@@ -7,7 +7,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
     <style>
-        body { font-family: 'Malgun Gothic', sans-serif; max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+        body { font-family: 'Malgun Gothic', sans-serif; }
         h2 { text-align: center; margin-bottom: 40px; }
         .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
         .card {

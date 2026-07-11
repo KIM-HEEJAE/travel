@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>여행 취향 설문</title>
     <style>
-        body { font-family: 'Malgun Gothic', sans-serif; max-width: 600px; margin: 50px auto; }
+        body { font-family: 'Malgun Gothic', sans-serif; }
         h2 { text-align: center; }
         .desc { text-align: center; color: #888; margin-bottom: 30px; }
         .option-group { margin-bottom: 30px; }

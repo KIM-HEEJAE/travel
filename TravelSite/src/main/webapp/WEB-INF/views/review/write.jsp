@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>리뷰 작성</title>
     <style>
-        body { font-family: 'Malgun Gothic', sans-serif; max-width: 500px; margin: 50px auto; }
+        body { font-family: 'Malgun Gothic', sans-serif; }
         h2 { text-align: center; }
         label { font-weight: bold; display: block; margin-bottom: 8px; margin-top: 16px; }
         .star-rating { font-size: 32px; cursor: pointer; }

@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <title>${hotel.hotelName}</title>
     <style>
-        body { font-family: 'Malgun Gothic', sans-serif; max-width: 700px; margin: 40px auto; }
+        body { font-family: 'Malgun Gothic', sans-serif;}
         .top-link { margin-bottom: 20px; }
         .top-link a { text-decoration: none; color: #999; font-size: 13px; }
 

@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <title>항공권 검색</title>
     <style>
-        body { font-family: 'Malgun Gothic', sans-serif; max-width: 900px; margin: 40px auto; }
+        body { font-family: 'Malgun Gothic', sans-serif;}
         h2 { text-align: center; }
         .top-link { margin-bottom: 20px; }
         .top-link a { text-decoration: none; color: #999; font-size: 13px; }

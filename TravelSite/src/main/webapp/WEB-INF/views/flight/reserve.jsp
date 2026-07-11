@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <title>항공권 예약</title>
     <style>
-        body { font-family: 'Malgun Gothic', sans-serif; max-width: 500px; margin: 50px auto; }
+        body { font-family: 'Malgun Gothic', sans-serif;}
         h2 { text-align: center; }
         .summary {
             background: #f7f9fc; border-radius: 12px; padding: 20px; margin-bottom: 24px;
