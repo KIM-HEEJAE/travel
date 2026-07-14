@@ -49,13 +49,17 @@
     <h2>마이페이지</h2>
 
     <div class="profile-card">
-        <div class="profile-info">
-            <div class="name">${member.name}님</div>
-            <div>아이디: ${member.userId}</div>
-            <div>이메일: ${member.email}</div>
-            <div>가입일: <fmt:formatDate value="${member.joinDate}" pattern="yyyy-MM-dd" /></div>
+    <div class="profile-info">
+        <div class="name">${member.name}님</div>
+        <div>아이디: ${member.userId}</div>
+        <div>이메일: ${member.email}</div>
+        <div>가입일: <fmt:formatDate value="${member.joinDate}" pattern="yyyy-MM-dd" /></div>
+        <div style="margin-top: 12px;">
+            <a href="${pageContext.request.contextPath}/mypage/editInfo" style="font-size: 13px; color: #2d7ff9; margin-right: 12px;">정보 수정</a>
+            <a href="${pageContext.request.contextPath}/mypage/changePassword" style="font-size: 13px; color: #2d7ff9;">비밀번호 변경</a>
         </div>
     </div>
+</div>
 
     <div class="section">
         <h3>🌏 내 여행 취향</h3>

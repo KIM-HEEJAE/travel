@@ -131,5 +131,12 @@ td a:hover { color: #2d7ff9; }
 .option-btn.selected { border-color: #2d7ff9; background: #eaf2ff; color: #2d7ff9; font-weight: bold; }
 .option-btn input { display: none; }
 
+/* ===== 프로모션 카드 (항공권/숙소 홈 노출용) ===== */
+.promo-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 20px; }
+.promo-card { border: 1px solid #eee; border-radius: 12px; padding: 16px; color: #333; transition: box-shadow 0.2s; }
+.promo-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+.promo-route { font-size: 15px; font-weight: bold; margin-bottom: 6px; }
+.promo-sub { font-size: 12px; color: #888; margin-bottom: 10px; }
+.promo-price { font-size: 16px; font-weight: bold; color: #2d7ff9; }
 /* ===== 푸터 ===== */
 .footer { text-align: center; padding: 30px; color: #999; font-size: 13px; border-top: 1px solid #eee; margin-top: 60px; }
