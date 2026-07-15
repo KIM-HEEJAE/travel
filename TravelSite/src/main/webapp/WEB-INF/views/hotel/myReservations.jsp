@@ -39,7 +39,11 @@
         <a href="${pageContext.request.contextPath}/hotel/list">← 숙소 검색으로</a>
     </div>
     <h2>🏨 내 숙소 예약</h2>
-
+    
+    
+<c:if test="${not empty error}">
+    <div class="error">${error}</div>
+</c:if>
     <c:choose>
         <c:when test="${empty myReservations}">
             <div class="empty">

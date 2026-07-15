@@ -25,4 +25,16 @@ public class FlightService {
     public List<FlightDTO> getPopularFlights(int limit) {
         return flightMapper.selectPopularFlights(limit);
     }
+    
+    public void addFlight(FlightDTO flight) {
+        flightMapper.insertFlight(flight);
+    }
+
+    public void editFlight(FlightDTO flight) {
+        flightMapper.updateFlight(flight);
+    }
+
+    public void removeFlight(int flightId) {
+        flightMapper.deleteFlight(flightId);
+    }
 }

@@ -46,6 +46,7 @@
 
     <div class="top-link">
         <a href="${pageContext.request.contextPath}/board/list">← 게시판으로 돌아가기</a>
+        <a href="${pageContext.request.contextPath}/chat/history" style="margin-left:16px;">내 채팅 기록 보기 →</a>
     </div>
     <h2>🤖 여행 AI 상담</h2>
     <p class="desc">여행지 추천, 예산, 일정 등 궁금한 걸 물어보세요!</p>

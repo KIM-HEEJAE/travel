@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.travel.mapper.ChatMapper">
+
+	<insert id="insertChatLog"
+		parameterType="com.travel.dto.ChatDTO">
+		INSERT INTO TRV_CHAT_LOG (CHAT_ID, MEMBER_ID, QUESTION, ANSWER)
+		VALUES (TRV_CHAT_SEQ.NEXTVAL, #{memberId}, #{question}, #{answer})
+	</insert>
+
+	<select id="selectChatsByMemberId" parameterType="int"
+		resultType="com.travel.dto.ChatDTO">
+		SELECT
+		CHAT_ID AS chatId,
+		MEMBER_ID AS memberId,
+		QUESTION AS question,
+		ANSWER AS answer,
+		REG_DATE AS regDate
+		FROM TRV_CHAT_LOG
+		WHERE MEMBER_ID = #{memberId}
+		ORDER BY CHAT_ID DESC
+	</select>
+
+</mapper>

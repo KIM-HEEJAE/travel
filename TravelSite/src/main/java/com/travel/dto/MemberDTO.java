@@ -16,4 +16,5 @@ public class MemberDTO {
 	private String name;
 	private String email;
 	private Date joinDate;
+	private String isAdmin;
 }

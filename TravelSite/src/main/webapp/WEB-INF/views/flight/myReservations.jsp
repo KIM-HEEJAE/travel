@@ -39,7 +39,9 @@
         <a href="${pageContext.request.contextPath}/flight/list">← 항공권 검색으로</a>
     </div>
     <h2>🎫 내 예약 목록</h2>
-
+<c:if test="${not empty error}">
+    <div class="error">${error}</div>
+</c:if>
     <c:choose>
         <c:when test="${empty myReservations}">
             <div class="empty">

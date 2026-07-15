@@ -26,4 +26,16 @@ public class HotelService {
     public List<HotelDTO> getTopRatedHotels(int limit) {
         return hotelMapper.selectTopRatedHotels(limit);
     }
+    
+    public void addHotel(HotelDTO hotel) {
+        hotelMapper.insertHotel(hotel);
+    }
+
+    public void editHotel(HotelDTO hotel) {
+        hotelMapper.updateHotel(hotel);
+    }
+
+    public void removeHotel(int hotelId) {
+        hotelMapper.deleteHotel(hotelId);
+    }
 }

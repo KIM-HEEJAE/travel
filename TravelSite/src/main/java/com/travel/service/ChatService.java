@@ -16,10 +16,14 @@ import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.travel.dto.ChatDTO;
+import com.travel.mapper.ChatMapper;
 
 @Service
 public class ChatService {
 
+	@Autowired
+	private ChatMapper chatMapper;
     @Autowired
     private RestTemplate restTemplate;
 
@@ -71,5 +75,19 @@ public class ChatService {
             e.printStackTrace();
             return "죄송합니다, 답변을 생성하는 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.";
         }
+    }
+    
+    // 대화 기록 저장 (로그인한 회원만)
+    public void saveChatLog(int memberId, String question, String answer) {
+        ChatDTO chat = new ChatDTO();
+        chat.setMemberId(memberId);
+        chat.setQuestion(question);
+        chat.setAnswer(answer);
+        chatMapper.insertChatLog(chat);
+    }
+
+    // 내 대화 기록 조회
+    public List<ChatDTO> getMyChats(int memberId) {
+        return chatMapper.selectChatsByMemberId(memberId);
     }
 }

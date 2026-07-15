@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.travel.dto.FlightDTO;
 import com.travel.dto.MemberDTO;
@@ -96,12 +97,20 @@ public class FlightController {
 
     // 예약 취소
     @RequestMapping("/cancel")
-    public String cancel(@RequestParam("reservationId") int reservationId, HttpSession session) {
+    public String cancel(@RequestParam("reservationId") int reservationId, HttpSession session,RedirectAttributes redirectAttributes) {
         MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
         if (loginMember == null) {
             return "redirect:/member/login";
         }
-        reservationService.cancelReservation(reservationId, loginMember.getMemberId());
+        String result = reservationService.cancelReservation(reservationId,loginMember.getMemberId());
+        
+        if("fail:toolate".equals(result)) {
+        	
+        	redirectAttributes.addFlashAttribute("error", "출발 24시간 이내의 예약은 취소할 수 없습니다.");
+        }else if("fail:notfound".equals(result)) {
+        	redirectAttributes.addFlashAttribute("error","취소할 수 없는 예약입니다.");
+        }
+        	
         return "redirect:/flight/myReservations";
     }
 }

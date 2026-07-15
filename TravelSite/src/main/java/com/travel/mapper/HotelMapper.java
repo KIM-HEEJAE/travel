@@ -13,4 +13,10 @@ public interface HotelMapper {
     
     List<HotelDTO> selectTopRatedHotels(int limit);
 
+    
+    void insertHotel(HotelDTO hotel);
+
+    void updateHotel(HotelDTO hotel);
+
+    void deleteHotel(int hotelId);
 }

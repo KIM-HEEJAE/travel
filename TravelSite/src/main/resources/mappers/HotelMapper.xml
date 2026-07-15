@@ -57,4 +57,26 @@
     )
     WHERE ROWNUM &lt;= #{limit}
 </select>
+
+<!-- 숙소 등록 -->
+<insert id="insertHotel" parameterType="com.travel.dto.HotelDTO">
+    INSERT INTO TRV_HOTEL (HOTEL_ID, HOTEL_NAME, LOCATION, HOTEL_TYPE, PRICE_PER_NIGHT, RATING, DESCRIPTION)
+    VALUES (TRV_HOTEL_SEQ.NEXTVAL, #{hotelName}, #{location}, #{hotelType}, #{pricePerNight}, #{rating}, #{description})
+</insert>
+
+<!-- 숙소 수정 -->
+<update id="updateHotel" parameterType="com.travel.dto.HotelDTO">
+    UPDATE TRV_HOTEL
+    SET HOTEL_NAME = #{hotelName},
+        LOCATION = #{location},
+        HOTEL_TYPE = #{hotelType},
+        PRICE_PER_NIGHT = #{pricePerNight},
+        DESCRIPTION = #{description}
+    WHERE HOTEL_ID = #{hotelId}
+</update>
+
+<!-- 숙소 삭제 -->
+<delete id="deleteHotel" parameterType="int">
+    DELETE FROM TRV_HOTEL WHERE HOTEL_ID = #{hotelId}
+</delete>
 </mapper>

@@ -13,4 +13,11 @@ public interface FlightMapper {
     
     List<FlightDTO> selectPopularFlights(int limit);
 
+    
+    // 관리자용 CRUD
+    void insertFlight(FlightDTO flight);
+
+    void updateFlight(FlightDTO flight);
+
+    void deleteFlight(int flightId);
 }

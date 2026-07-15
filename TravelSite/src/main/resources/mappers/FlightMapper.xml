@@ -74,5 +74,30 @@
         FROM TRV_FLIGHT
         WHERE FLIGHT_ID = #{flightId}
     </select>
+<!-- 항공권 등록 -->
+<insert id="insertFlight" parameterType="com.travel.dto.FlightDTO">
+    INSERT INTO TRV_FLIGHT (FLIGHT_ID, AIRLINE, DEPARTURE, ARRIVAL, FLIGHT_TYPE, DEPART_TIME, ARRIVE_TIME, DURATION, PRICE, SEAT_CLASS, FLIGHT_DATE)
+    VALUES (TRV_FLIGHT_SEQ.NEXTVAL, #{airline}, #{departure}, #{arrival}, #{flightType}, #{departTime}, #{arriveTime}, #{duration}, #{price}, #{seatClass}, #{flightDate})
+</insert>
 
+<!-- 항공권 수정 -->
+<update id="updateFlight" parameterType="com.travel.dto.FlightDTO">
+    UPDATE TRV_FLIGHT
+    SET AIRLINE = #{airline},
+        DEPARTURE = #{departure},
+        ARRIVAL = #{arrival},
+        FLIGHT_TYPE = #{flightType},
+        DEPART_TIME = #{departTime},
+        ARRIVE_TIME = #{arriveTime},
+        DURATION = #{duration},
+        PRICE = #{price},
+        SEAT_CLASS = #{seatClass},
+        FLIGHT_DATE = #{flightDate}
+    WHERE FLIGHT_ID = #{flightId}
+</update>
+
+<!-- 항공권 삭제 -->
+<delete id="deleteFlight" parameterType="int">
+    DELETE FROM TRV_FLIGHT WHERE FLIGHT_ID = #{flightId}
+</delete>
 </mapper>
