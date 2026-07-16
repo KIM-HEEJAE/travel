@@ -21,6 +21,20 @@
 | 배포 | Docker / Render |
 
 
+## 🚀 배포 링크 (Live Demo)
+현재 프로젝트가 클라우드 환경에 배포되어 있습니다. 아래 링크에서 확인하실 수 있습니다.
+- **URL:** [https://travel-site-uk8g.onrender.com](https://travel-site-uk8g.onrender.com)
+
+## 🛠 배포 환경 (Deployment)
+- **Platform:** Render
+- **Server:** Apache Tomcat 9
+- **Environment:** Docker (Containerized)
+- **Language:** Java 17
+
+## ⚠️ 현재 상태 안내
+- 현재 배포된 버전은 DB 연결 설정이 최적화되지 않아 일부 기능(메인 페이지 데이터 조회 등)이 제한되어 있을 수 있습니다. (추후 클라우드 DB 연동 예정)
+- 로그인 및 회원가입 화면 등의 UI 동작은 확인 가능합니다.
+
 ## ✨ 주요 기능
 
 ### 1. 회원 시스템
@@ -124,16 +138,4 @@ upload.path=C:/work/travelimg/
 - 모바일 반응형 UI
 - 파일 업로드 확장자/용량 서버단 검증
 
-## 🚀 배포 링크 (Live Demo)
-현재 프로젝트가 클라우드 환경에 배포되어 있습니다. 아래 링크에서 확인하실 수 있습니다.
-- **URL:** [https://travel-site-uk8g.onrender.com](https://travel-site-uk8g.onrender.com)
 
-## 🛠 배포 환경 (Deployment)
-- **Platform:** Render
-- **Server:** Apache Tomcat 9
-- **Environment:** Docker (Containerized)
-- **Language:** Java 17
-
-## ⚠️ 현재 상태 안내
-- 현재 배포된 버전은 DB 연결 설정이 최적화되지 않아 일부 기능(메인 페이지 데이터 조회 등)이 제한되어 있을 수 있습니다. (추후 클라우드 DB 연동 예정)
-- 로그인 및 회원가입 화면 등의 UI 동작은 확인 가능합니다.
