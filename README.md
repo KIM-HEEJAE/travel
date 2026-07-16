@@ -18,6 +18,8 @@
 | 시각화 | Chart.js |
 | 빌드 | Maven |
 | 버전 관리 | Git / GitHub |
+| 배포 | Docker / Render |
+
 
 ## ✨ 주요 기능
 
