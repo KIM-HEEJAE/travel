@@ -102,7 +102,7 @@ src/main/java/com/travel/
 ├── service/      # 비즈니스 로직
 ├── mapper/       # MyBatis 매퍼 인터페이스
 ├── dto/          # 데이터 전송 객체
-└── util/         # 페이징 등 유틸리티
+└── page/         # 페이징 
 
 src/main/resources/
 ├── mappers/      # MyBatis XML 쿼리
