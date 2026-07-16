@@ -113,23 +113,6 @@ src/main/webapp/
 └── WEB-INF/views/            # JSP 화면
 ```
 
-## 🚀 실행 방법
-
-1. Oracle DB 생성 후 테이블 스키마 실행
-2. `src/main/resources/config.properties`에 Gemini API 키, DB 정보, 업로드 경로 설정
-3. `WEB-INF/spring/root-context.xml`에 DB 접속 정보 확인
-4. STS(Eclipse)에서 프로젝트 Import → Maven Update → Tomcat 서버 실행
-5. 브라우저에서 `http://localhost:8080/TravelSite/` 접속
-
-## 🔒 보안 관련 안내
-
-`config.properties`는 API 키 및 DB 계정 정보를 포함하므로 `.gitignore`에 등록되어 Git에 커밋되지 않습니다. 프로젝트 실행 시 해당 파일을 직접 생성해야 합니다.
-
-```properties
-gemini.api.key=YOUR_GEMINI_API_KEY
-gemini.api.url=https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent
-upload.path=C:/work/travelimg/
-```
 
 ## 📝 향후 개선 방향
 
